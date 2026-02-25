@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Il mio cioccolato · event reservation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    body {
+      background: #faf7f2;
+      background-image: radial-gradient(circle at 10% 30%, rgba(242, 215, 182, 0.3) 0%, transparent 30%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 1.5rem;
+    }
+
+    .reservation-card {
+      max-width: 880px;
+      width: 100%;
+      background: rgba(255, 251, 245, 0.95);
+      backdrop-filter: blur(2px);
+      border-radius: 36px 36px 32px 32px;
+      box-shadow: 0 20px 40px -12px rgba(60, 30, 10, 0.4), 0 8px 16px -8px rgba(0,0,0,0.2);
+      overflow: hidden;
+      border: 1px solid #ecdac0;
+    }
+
+    .header {
+      background: #4b2e1b;
+      padding: 2rem 2rem 1.5rem 2rem;
+      color: #fae5cd;
+      text-align: center;
+      border-bottom: 6px solid #c28a4b;
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 3px;
+      word-spacing: 6px;
+      text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 2px 2px 0 #2e1b0f;
+    }
+
+    .header h1 span {
+      font-weight: 300;
+      font-size: 1.8rem;
+      color: #e3b17b;
+    }
+
+    .header p {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-top: 0.3rem;
+      border-top: 1px dashed #b47d56;
+      padding-top: 0.8rem;
+      display: inline-block;
+    }
+
+    .form-container {
+      padding: 2rem 2rem 2.5rem 2rem;
+    }
+
+    .form-section {
+      background: #fffefb;
+      border-radius: 24px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 6px 14px rgba(158, 116, 72, 0.08);
+      border: 1px solid #efe0ce;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #4b2e1b;
+      border-left: 8px solid #b0723a;
+      padding-left: 1rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.3px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem 1.8rem;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #3f2a18;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.3px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #e7d6c0;
+      border-radius: 18px;
+      font-size: 1rem;
+      background: white;
+      transition: 0.15s;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #b0723a;
+      box-shadow: 0 0 0 4px rgba(176, 114, 58, 0.15);
+    }
+
+    .radio-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      background: #f7efe4;
+      padding: 1rem 1.5rem;
+      border-radius: 40px;
+      margin-top: 0.3rem;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      accent-color: #b0723a;
+      transform: scale(1.1);
+    }
+
+    .info-block {
+      background: #f4eade;
+      border-radius: 24px;
+      padding: 1.3rem 1.8rem;
+      margin: 1rem 0 0.5rem;
+      color: #2c1e12;
+      font-size: 1rem;
+      border-left: 5px solid #c28a4b;
+    }
+
+    .info-block p {
+      margin: 0.3rem 0;
+      line-height: 1.5;
+    }
+
+    .info-block strong {
+      color: #6b3f1c;
+      font-weight: 700;
+    }
+
+    .terms-list {
+      background: #f1e8dc;
+      border-radius: 22px;
+      padding: 1.3rem 2rem;
+      margin: 1.5rem 0 1rem;
+      list-style-type: "🍫 ";
+      line-height: 1.8;
+    }
+
+    .terms-list li {
+      margin-bottom: 0.5rem;
+      color: #2a1d11;
+      font-weight: 450;
+    }
+
+    .signature-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      align-items: flex-end;
+      margin-top: 1.2rem;
+    }
+
+    .signature-item {
+      flex: 1 1 200px;
+    }
+
+    .checkbox-agree {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #e8d9c8;
+      padding: 0.8rem 1.5rem;
+      border-radius: 60px;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .checkbox-agree input {
+      width: 24px;
+      height: 24px;
+      accent-color: #8b5a2e;
+    }
+
+    .checkbox-agree label {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .btn-submit {
+      background: #4b2e1b;
+      border: none;
+      color: #fff0dd;
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.25s;
+      border: 2px solid #c28a4b;
+      letter-spacing: 1.2px;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      background: #2f1d0f;
+      border-color: #e3b17b;
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px -5px #7b5839;
+    }
+
+    .whatsapp-note {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      color: #75563b;
+      background: #f7efe3;
+      padding: 0.5rem;
+      border-radius: 60px;
+    }
+
+    .inline-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .guest-count {
+      max-width: 160px;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 0.8rem;
+      }
+
+      .header h1 {
+        font-size: 1.8rem;
+      }
+
+      .header h1 span {
+        font-size: 1.5rem;
+      }
+
+      .form-container {
+        padding: 1.2rem;
+      }
+
+      .form-section {
+        padding: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.25rem;
+      }
+
+      .btn-submit {
+        font-size: 1.15rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="reservation-card">
+  <div class="header">
+    <h1>il mio <span>cioccolato</span></h1>
+    <p>Event Reservation Form</p>
+  </div>
+
+  <div class="form-container">
+    <form id="reservationForm">
+      <div class="form-section">
+        <div class="section-title">🍫 Guest & Event Info</div>
+        <div class="field-grid">
+          <div>
+            <label>Primary Contact Person *</label>
+            <input type="text" id="contactPerson" placeholder="e.g. Maria Rossi" required>
+          </div>
+          <div>
+            <label>Mobile Number *</label>
+            <input type="tel" id="mobile" placeholder="+971 5X XXX XXXX" required>
+          </div>
+          <div>
+            <label>Email *</label>
+            <input type="email" id="email" placeholder="hello@example.com" required>
+          </div>
+          <div>
+            <label>Event / Occasion *</label>
+            <input type="text" id="event" placeholder="Birthday / Proposal / etc." required>
+          </div>
+          <div class="field-full">
+            <label>Special Requests / Theme</label>
+            <textarea id="specialRequests" rows="2" placeholder="Colours, theme, any special notes..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">⏱️ Event Details</div>
+        <div class="field-grid">
+          <div>
+            <label>Preferred Date *</label>
+            <input type="date" id="prefDate" required>
+          </div>
+          <div>
+            <label>Preferred Time Slot *</label>
+            <input type="time" id="prefTime" required>
+          </div>
+          <div>
+            <label>Reservation Duration *</label>
+            <select id="duration" required>
+              <option value="1 hour">1 hour</option>
+              <option value="2 hours" selected>2 hours (standard)</option>
+              <option value="3 hours">3 hours (if slot free)</option>
+              <option value="4 hours">4 hours (if slot free)</option>
+            </select>
+          </div>
+          <div>
+            <label>Number of Guests * (max 24)</label>
+            <input type="number" id="guests" min="1" max="24" value="10" class="guest-count" required>
+          </div>
+        </div>
+
+        <div class="info-block">
+          <p><strong>🍷 Food & Beverage Offer:</strong> Enjoy any drinks and food for just AED 30 per person.<br>
+          ✨ Custom cakes for special occasions available at special price (advance notice required).</p>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">🎈 Decoration & Setup</div>
+        <label>Decoration Arrangement:</label>
+        <div class="radio-group" id="decorationGroup">
+          <label class="radio-option">
+            <input type="radio" name="decoration" value="Provided by cafe (additional fee applies)" checked>
+            <span>Provided by cafe <span style="color:#7b4a2a;">(additional fee)</span></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="decoration" value="External decoration (prior approval required)">
+            <span>External decoration <span style="color:#7b4a2a;">(prior approval)</span></span>
+          </label>
+        </div>
+
+        <div style="margin-top: 1.5rem;">
+          <label>Special Setup Requests (cake table / gift table):</label>
+          <input type="text" id="setupRequests" placeholder="e.g. need a separate gift table">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">💰 Payment & Confirmation</div>
+        <div class="info-block" style="background: #e7d9c7;">
+          <p>📍 <strong>Venue rent:</strong> AED 500 for 2 hours.<br>
+          💵 50% deposit required to secure booking.<br>
+          ✅ Free cancellation up to 1 day before event.<br>
+          ⚖️ Deposit subject to deduction for pre-approved items.</p>
+        </div>
+
+        <ul class="terms-list">
+          <li>Available Monday to Friday only.</li>
+          <li>Book at least 48 hours in advance.</li>
+          <li>Reservation limited to 2 hours. Extra hours only if next slot is free (charged).</li>
+          <li>External food/beverages not permitted unless pre-approved.</li>
+          <li>Maximum 24 guests (venue capacity).</li>
+        </ul>
+
+        <div class="signature-area">
+          <div class="signature-item">
+            <label>Signature (full name) *</label>
+            <input type="text" id="signatureName" placeholder="Your name" required>
+          </div>
+          <div class="signature-item">
+            <label>Date *</label>
+            <input type="date" id="signatureDate" required>
+          </div>
+        </div>
+
+        <div class="checkbox-agree">
+          <input type="checkbox" id="agreeTerms" required>
+          <label for="agreeTerms">I have read and agree to the Terms & Conditions</label>
+        </div>
+
+        <input type="hidden" id="whatsappNumber" value="971501234567">
+
+        <button type="submit" class="btn-submit">
+          <span>📲 Send via WhatsApp</span>
+          <span style="font-size:1.2rem;">⏎</span>
+        </button>
+        <div class="whatsapp-note">
+          ⚡ After you press, WhatsApp will open with prefilled message. Just tap SEND.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const form = document.getElementById('reservationForm');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const contact = document.getElementById('contactPerson').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const eventOcc = document.getElementById('event').value.trim();
+      const prefDate = document.getElementById('prefDate').value;
+      const prefTime = document.getElementById('prefTime').value;
+      const duration = document.getElementById('duration').value;
+      const guests = document.getElementById('guests').value;
+      const signature = document.getElementById('signatureName').value.trim();
+      const sigDate = document.getElementById('signatureDate').value;
+      const agree = document.getElementById('agreeTerms').checked;
+
+      if (!contact || !mobile || !email || !eventOcc || !prefDate || !prefTime || !duration || !guests || !signature || !sigDate) {
+        alert('❌ Please fill in all required fields (marked with *).');
+        return;
+      }
+
+      if (!agree) {
+        alert('⚠️ You must agree to the Terms & Conditions to proceed.');
+        return;
+      }
+
+      if (parseInt(guests, 10) > 24) {
+        alert('🚫 Maximum guests allowed is 24.');
+        return;
+      }
+
+      let decorationVal = 'Provided by cafe (additional fee applies)';
+      const decRadios = document.getElementsByName('decoration');
+      for (const radio of decRadios) {
+        if (radio.checked) {
+          decorationVal = radio.value;
+          break;
+        }
+      }
+
+      const setupReq = document.getElementById('setupRequests').value.trim() || '—';
+      const special = document.getElementById('specialRequests').value.trim() || '—';
+
+      const messageLines = [];
+      messageLines.push('🍫 *IL MIO CIOCCOLATO* event reservation');
+      messageLines.push('─────────────────────');
+      messageLines.push('👤 *Contact:* ' + contact);
+      messageLines.push('📞 *Mobile:* ' + mobile);
+      messageLines.push('📧 *Email:* ' + email);
+      messageLines.push('🎉 *Event/Occasion:* ' + eventOcc);
+      messageLines.push('📝 *Special requests:* ' + special);
+      messageLines.push('📅 *Date:* ' + prefDate);
+      messageLines.push('⏰ *Time:* ' + prefTime);
+      messageLines.push('⏳ *Duration:* ' + duration);
+      messageLines.push('👥 *Guests:* ' + guests);
+      messageLines.push('🎈 *Decoration:* ' + decorationVal);
+      messageLines.push('🪑 *Setup requests:* ' + setupReq);
+      messageLines.push('✍️ *Signature:* ' + signature);
+      messageLines.push('📆 *Signed on:* ' + sigDate);
+      messageLines.push('✅ *Terms accepted:* Yes');
+      messageLines.push('─────────────────────');
+      messageLines.push('_Rent AED 500 · 50% deposit required_');
+
+      const fullMessage = messageLines.join('\n');
+      const waNumber = document.getElementById('whatsappNumber').value;
+      const waUrl = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(fullMessage);
+
+      window.open(waUrl, '_blank');
+
+      setTimeout(function() {
+        alert('✅ WhatsApp opened – just press send to complete reservation.');
+      }, 500);
+    });
+  })();
+</script>
+
+<div style="text-align: center; margin-top: 1rem; font-size: 0.8rem; color: #735f4b;">
+  ⚙️ To change WhatsApp number, edit the hidden field value (without +) in HTML.
+</div>
+</body>
+</html>
