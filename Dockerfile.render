@@ -1,0 +1,12 @@
+FROM nginx:1.27-alpine
+
+RUN apk add --no-cache gettext
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.render.template.html /usr/share/nginx/html/index.template.html
+COPY scripts/start-render.sh /start-render.sh
+
+RUN chmod +x /start-render.sh
+
+EXPOSE 80
+CMD ["/start-render.sh"]

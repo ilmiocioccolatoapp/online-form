@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: il-mio-cioccolato-form
+    env: docker
+    dockerfilePath: ./Dockerfile.render
+    plan: free
+    envVars:
+      - key: WHATSAPP_NUMBER
+        sync: false
