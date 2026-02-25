@@ -1,9 +1,9 @@
 services:
-  - type: web
-    name: il-mio-cioccolato-form
-    env: docker
-    dockerfilePath: ./Dockerfile.render
-    plan: free
+  - type: static_site
+    name: reservationform
+    branch: main
+    buildCommand: sh ./build-render-static.sh
+    staticPublishPath: dist
     envVars:
       - key: WHATSAPP_NUMBER
         sync: false
