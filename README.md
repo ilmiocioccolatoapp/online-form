@@ -42,6 +42,22 @@ Steps:
 3. Set environment variable `WHATSAPP_NUMBER` (format: country code + number, no `+`).
 4. Deploy.
 
+## 1.2) Render New Static Site (exact form values)
+
+Use these values in Render's **New Static Site** page:
+
+- Name: `reservationform`
+- Branch: `main`
+- Root Directory: leave empty
+- Build Command: `./scripts/build-render-static.sh`
+- Publish Directory: `dist`
+- Environment Variable:
+  - `WHATSAPP_NUMBER=971501234567`
+
+Notes:
+- Replace `971501234567` with your real business number (country code + number, no `+`, spaces, or dashes).
+- This static flow uses `index.render.template.html` and generates `dist/index.html` during build.
+
 ## 2) Local Preview
 
 Run from this folder:
