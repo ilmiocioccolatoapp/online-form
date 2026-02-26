@@ -181,7 +181,7 @@
       border-radius: 22px;
       padding: 1.3rem 2rem;
       margin: 1.5rem 0 1rem;
-      list-style-type: "🍫 ";
+      list-style-type: disc;
       line-height: 1.8;
     }
 
@@ -405,7 +405,7 @@
   <div class="form-container">
     <form id="reservationForm">
       <div class="form-section">
-        <div class="section-title">🍫 Guest & Event Info</div>
+        <div class="section-title">Guest & Event Info</div>
         <div class="field-grid">
           <div>
             <label>Primary Contact Person *</label>
@@ -431,7 +431,7 @@
       </div>
 
       <div class="form-section">
-        <div class="section-title">⏱️ Event Details</div>
+        <div class="section-title">Event Details</div>
         <div class="field-grid">
           <div>
             <label>Preferred Date *</label>
@@ -452,18 +452,18 @@
           </div>
           <div>
             <label>Number of Guests * (max 24)</label>
-            <input type="number" id="guests" min="1" max="24" value="10" class="guest-count" required>
+            <input type="number" id="guests" min="1" max="24" class="guest-count" placeholder="e.g. 10" required>
           </div>
         </div>
 
         <div class="info-block">
-          <p><strong>🍷 Food & Beverage Offer:</strong> Enjoy any drinks and food for just AED 30 per person.<br>
-          ✨ Custom cakes for special occasions available at special price (advance notice required).</p>
+          <p><strong>Food & Beverage Offer:</strong> Enjoy any drinks and food for just AED 30 per person.<br>
+          Custom cakes for special occasions available at special price (advance notice required).</p>
         </div>
       </div>
 
       <div class="form-section">
-        <div class="section-title">🎈 Decoration & Setup</div>
+        <div class="section-title">Decoration & Setup</div>
         <label>Decoration Arrangement:</label>
         <div class="radio-group" id="decorationGroup">
           <label class="radio-option">
@@ -483,12 +483,12 @@
       </div>
 
       <div class="form-section">
-        <div class="section-title">💰 Payment & Confirmation</div>
+        <div class="section-title">Payment & Confirmation</div>
         <div class="info-block" style="background: #e7d9c7;">
-          <p>📍 <strong>Venue rent:</strong> AED 500 for 2 hours.<br>
-          💵 50% deposit required to secure booking.<br>
-          ✅ Free cancellation up to 1 day before event.<br>
-          ⚖️ Deposit subject to deduction for pre-approved items.</p>
+          <p><strong>Venue rent:</strong> AED 500 for 2 hours.<br>
+          50% deposit required to secure booking.<br>
+          Free cancellation up to 1 day before event.<br>
+          Deposit subject to deduction for pre-approved items.</p>
         </div>
 
         <ul class="terms-list">
@@ -518,11 +518,10 @@
         <input type="hidden" id="whatsappNumber" value="$WHATSAPP_NUMBER">
 
         <button type="submit" class="btn-submit">
-          <span>📲 Send via WhatsApp</span>
-          <span style="font-size:1.2rem;">⏎</span>
+          <span>Send via WhatsApp</span>
         </button>
         <div class="whatsapp-note">
-          ⚡ After you press, WhatsApp will open with prefilled message. Just tap SEND.
+          After you press, WhatsApp will open with a prefilled message. Just tap SEND.
         </div>
       </div>
     </form>
@@ -549,17 +548,17 @@
       const agree = document.getElementById('agreeTerms').checked;
 
       if (!contact || !mobile || !email || !eventOcc || !prefDate || !prefTime || !duration || !guests || !signature || !sigDate) {
-        alert('❌ Please fill in all required fields (marked with *).');
+        alert('Please fill in all required fields (marked with *).');
         return;
       }
 
       if (!agree) {
-        alert('⚠️ You must agree to the Terms & Conditions to proceed.');
+        alert('You must agree to the Terms & Conditions to proceed.');
         return;
       }
 
       if (parseInt(guests, 10) > 24) {
-        alert('🚫 Maximum guests allowed is 24.');
+        alert('Maximum guests allowed is 24.');
         return;
       }
 
@@ -576,22 +575,22 @@
       const special = document.getElementById('specialRequests').value.trim() || '—';
 
       const messageLines = [];
-      messageLines.push('🍫 *IL MIO CIOCCOLATO* event reservation');
+      messageLines.push('*IL MIO CIOCCOLATO* event reservation');
       messageLines.push('─────────────────────');
-      messageLines.push('👤 *Contact:* ' + contact);
-      messageLines.push('📞 *Mobile:* ' + mobile);
-      messageLines.push('📧 *Email:* ' + email);
-      messageLines.push('🎉 *Event/Occasion:* ' + eventOcc);
-      messageLines.push('📝 *Special requests:* ' + special);
-      messageLines.push('📅 *Date:* ' + prefDate);
-      messageLines.push('⏰ *Time:* ' + prefTime);
-      messageLines.push('⏳ *Duration:* ' + duration);
-      messageLines.push('👥 *Guests:* ' + guests);
-      messageLines.push('🎈 *Decoration:* ' + decorationVal);
-      messageLines.push('🪑 *Setup requests:* ' + setupReq);
-      messageLines.push('✍️ *Signature:* ' + signature);
-      messageLines.push('📆 *Signed on:* ' + sigDate);
-      messageLines.push('✅ *Terms accepted:* Yes');
+      messageLines.push('*Contact:* ' + contact);
+      messageLines.push('*Mobile:* ' + mobile);
+      messageLines.push('*Email:* ' + email);
+      messageLines.push('*Event/Occasion:* ' + eventOcc);
+      messageLines.push('*Special requests:* ' + special);
+      messageLines.push('*Date:* ' + prefDate);
+      messageLines.push('*Time:* ' + prefTime);
+      messageLines.push('*Duration:* ' + duration);
+      messageLines.push('*Guests:* ' + guests);
+      messageLines.push('*Decoration:* ' + decorationVal);
+      messageLines.push('*Setup requests:* ' + setupReq);
+      messageLines.push('*Signature:* ' + signature);
+      messageLines.push('*Signed on:* ' + sigDate);
+      messageLines.push('*Terms accepted:* Yes');
       messageLines.push('─────────────────────');
       messageLines.push('_Rent AED 500 · 50% deposit required_');
 
@@ -602,7 +601,7 @@
       window.open(waUrl, '_blank');
 
       setTimeout(function() {
-        alert('✅ WhatsApp opened – just press send to complete reservation.');
+        alert('WhatsApp opened. Press send to complete reservation.');
       }, 500);
     });
   })();
