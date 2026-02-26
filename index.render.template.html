@@ -405,7 +405,7 @@
   <div class="form-container">
     <form id="reservationForm">
       <div class="form-section">
-        <div class="section-title">Guest & Event Info</div>
+        <div class="section-title">Guest & Event Information</div>
         <div class="field-grid">
           <div>
             <label>Primary Contact Person *</label>
@@ -456,52 +456,64 @@
           </div>
         </div>
 
-        <div class="info-block">
-          <p><strong>Food & Beverage Offer:</strong> Enjoy any drinks and food for just AED 30 per person.<br>
-          Custom cakes for special occasions available at special price (advance notice required).</p>
-        </div>
       </div>
 
       <div class="form-section">
-        <div class="section-title">Decoration & Setup</div>
-        <label>Decoration Arrangement:</label>
+        <div class="section-title">Food & Beverage Offer :</div>
+        <ul class="terms-list" style="margin-top: 0; background: transparent; padding: 0 0 0 1.5rem;">
+          <li>Enjoy Any Drinks and Food for just AED 30.</li>
+          <li>Custom cakes for special occasions are available at a special price, subject to advance notice and order confirmation</li>
+        </ul>
+      </div>
+
+      <div class="form-section">
+        <div class="section-title">Decoration & Setup :</div>
+        <label>Decoration Arrangement :</label>
         <div class="radio-group" id="decorationGroup">
           <label class="radio-option">
-            <input type="radio" name="decoration" value="Provided by cafe (additional fee applies)" checked>
-            <span>Provided by cafe <span style="color:#7b4a2a;">(additional fee)</span></span>
+            <input type="radio" name="decoration" value="Provided by the cafe (additional fee applies)" checked>
+            <span>Provided by the cafe <span style="color:#7b4a2a;">(additional fee applies)</span></span>
           </label>
           <label class="radio-option">
-            <input type="radio" name="decoration" value="External decoration (prior approval required)">
-            <span>External decoration <span style="color:#7b4a2a;">(prior approval)</span></span>
+            <input type="radio" name="decoration" value="External Decoration (prior approval required)">
+            <span>External Decoration <span style="color:#7b4a2a;">(prior approval required)</span></span>
           </label>
         </div>
 
         <div style="margin-top: 1.5rem;">
-          <label>Special Setup Requests (cake table / gift table):</label>
+          <label>Special Setup Requests (cake table / gift table) :</label>
           <input type="text" id="setupRequests" placeholder="e.g. need a separate gift table">
         </div>
       </div>
 
       <div class="form-section">
-        <div class="section-title">Payment & Confirmation</div>
-        <div class="info-block" style="background: #e7d9c7;">
-          <p><strong>Venue rent:</strong> AED 500 for 2 hours.<br>
-          50% deposit required to secure booking.<br>
-          Free cancellation up to 1 day before event.<br>
-          Deposit subject to deduction for pre-approved items.</p>
-        </div>
-
-        <ul class="terms-list">
-          <li>Available Monday to Friday only.</li>
-          <li>Book at least 48 hours in advance.</li>
-          <li>Reservation limited to 2 hours. Extra hours only if next slot is free (charged).</li>
-          <li>External food/beverages not permitted unless pre-approved.</li>
-          <li>Maximum 24 guests (venue capacity).</li>
+        <div class="section-title">Payment & Confirmation :</div>
+        <ul class="terms-list" style="margin-top: 0; background: transparent; padding: 0 0 0 1.5rem;">
+          <li>Venue/Cafe rent is AED 500 for 2 hours.</li>
+          <li>50% deposit for booking.</li>
+          <li>A charge of AED 200 for every extra hour.</li>
+          <li>Free Cancellation 1 day before the event.</li>
+          <li>Deposit is subject to deduction for all pre-approved items.</li>
         </ul>
 
-        <div class="signature-area">
+        <div class="section-title" style="margin-top: 2rem;">Payment & Confirmation :</div>
+        <ul class="terms-list" style="margin-top: 0; background: transparent; padding: 0 0 0 1.5rem;">
+          <li>Venue is available from Monday to Sunday (from 8:00 AM to 8:00 PM)</li>
+          <li>Bookings must be made at least 48 hours in advance.</li>
+          <li>Each reservation is limited to a duration of 2 hours. Extra hours allowed only if next slot is free and will be charged.</li>
+          <li>External food or beverages are not permitted unless pre-approved.</li>
+          <li>The venue can comfortably accommodate a maximum of 24 guests.</li>
+        </ul>
+
+        <div class="section-title" style="margin-top: 2rem;">Signature & Submission</div>
+        <div class="checkbox-agree" style="margin-top: 0; background: transparent; padding-left: 0;">
+          <input type="checkbox" id="agreeTerms" required>
+          <label for="agreeTerms">I have read and agreed to the Terms & Conditions.</label>
+        </div>
+
+        <div class="signature-area" style="margin-top: 1rem;">
           <div class="signature-item">
-            <label>Signature (full name) *</label>
+            <label>Signature *</label>
             <input type="text" id="signatureName" placeholder="Your name" required>
           </div>
           <div class="signature-item">
@@ -509,10 +521,10 @@
             <input type="date" id="signatureDate" required>
           </div>
         </div>
-
-        <div class="checkbox-agree">
-          <input type="checkbox" id="agreeTerms" required>
-          <label for="agreeTerms">I have read and agree to the Terms & Conditions</label>
+        
+        <div style="text-align: center; margin-top: 3rem; font-size: 0.95rem; font-style: italic; color: #4b2e1b;">
+          <strong>Please return this form via email or submit in person at Il Mio Cioccolato Cafe.</strong><br>
+          <strong>Email: ilmiociocolato@gmail.com | Telephone: +971 2 666 2211</strong>
         </div>
 
         <input type="hidden" id="whatsappNumber" value="$WHATSAPP_NUMBER">
@@ -562,7 +574,7 @@
         return;
       }
 
-      let decorationVal = 'Provided by cafe (additional fee applies)';
+      let decorationVal = 'Provided by the cafe (additional fee applies)';
       const decRadios = document.getElementsByName('decoration');
       for (const radio of decRadios) {
         if (radio.checked) {
